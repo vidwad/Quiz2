@@ -1,15 +1,52 @@
 <!DOCTYPE html>
 <html>
+  
   <head>
-    <title>QuizIi</title>
+    <title>IdeasOnRails</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+
+    <nav class="navbar navbar-expand sticky-top navbar-outline-primary bg-light mb-4">
+      <%= link_to "Idea On Rails", root_path, class: "navbar-brand" %>
+
+      <div class="collapse navbar-collapse">
+        <div class="navbar-nav ml-auto">
+          <%= link_to "Home", root_path, class: "nav-item nav-link" %>
+          <%= link_to "New Ide", new_idea_path, class: "nav-item nav-link" %>
+       
+            <% if user_signed_in? %>
+            <%= link_to current_user.name, edit_user_path(current_user), class: "nav-item nav-link" %>
+            <%= link_to "Sign Out", session_path, method: :delete, data: {confirm: "Are you sure you want to sign out?"}, class: "nav-item nav-link" %>
+            <% else %>
+            <%= link_to "Sign In", new_session_path, class: "nav-item nav-link" %>
+            |
+            <%= link_to "Sign Up", new_user_path, class: "nav-item nav-link" %>
+            <% end %>
+       
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container-fluid">
+     
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type == "alert" ? "danger" : "success" %>" role="alert">
+          <%= message %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+
+      <%= yield %>
+  
+    </div>
+  
   </body>
 </html>

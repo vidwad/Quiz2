@@ -1,0 +1,68 @@
+<h1><%= @idea.title %></h1>
+
+<p><%= @idea.body %></p>
+
+<p><small>Idea posted <%= time_ago_in_words @idea.created_at %> ago</small></p>
+
+
+<% if can? :crud, @idea %>
+<div class="owner-controls mb-4">
+  <%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-outline-primary" %>
+  <%= link_to "Delete", idea_path(@idea), method: :delete, class: "btn btn-outline-primary" %>
+</div>
+<% end %>
+
+
+<h4>Review</h4>
+
+<%= form_with(model: [@idea, @review], local: true) do |f| %>
+
+<% if @review.errors.any? %>
+  <ul>
+    <% @review.errors.full_messages.each do |msg|%>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="form-group">
+  <%= f.text_area(
+  :body,
+  cols: 50,
+  rows: 5,
+  placeholder: "What are your thoughts?",
+  class: "form-control"
+  ) %>
+</div>
+<%= f.submit "Submit Review", class: "btn btn-outline-primary" %>
+<% end %>
+
+<hr />
+
+<ul class="review-list">
+  <% @reviews.each do |review| %>
+    <li>
+      <p>
+        <%= review.body %> <br />
+        <% if can? :crud, review %>
+        <small>
+          <%= link_to(
+            "Delete",
+            idea_review_path(@idea, review),
+            method: :delete,
+            data: {
+              confirm: "Are you sure?"
+            }
+          ) %>
+        </small>
+        |
+        <% end %>
+        <small>
+          Reviewed <%= time_ago_in_words(review.created_at) %> ago
+        </small>
+      </p>
+    </li>
+  <% end %>
+</ul>
+
+

@@ -1,0 +1,40 @@
+ul.review-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+li.nav-item {
+    padding-left: 20px;
+    padding-bottom: 20px;
+  }
+
+.blogtitle {
+    font-weight: bold;
+    font-size: 1.25em;
+    color: rgb(0, 153, 255);
+    float: left
+      }
+
+div.blogbox {
+  outline: .5px solid rgb(183, 183, 184);
+  padding: 25px 25px 25px 25px;
+  margin: 25px 0px 25px 0px;
+}
+
+
+h4 {
+  font-weight: bold;
+  font-size: 1.25em;
+  color: rgb(3, 3, 3);
+}
+
+
+div.form-group {
+  padding: 5px 0px 5px 0px;
+  width: 100%;
+  
+}
+
+.full-width {
+  width: 100%;
+}
