@@ -6,7 +6,7 @@ class LikesController < ApplicationController
     like = Like.new({user: current_user, idea: idea})
 
     if not can?(:like, idea)
-      flash[:danger] = "liking your own idea? wow..."
+      flash[:danger] = "liking your own idea is not an acceptable idea!..."
       return redirect_to ideas_path(idea)
     end
 

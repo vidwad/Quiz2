@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse">
         <div class="navbar-nav ml-auto">
           <%= link_to "Home", root_path, class: "nav-item nav-link" %>
-          <%= link_to "New Ide", new_idea_path, class: "nav-item nav-link" %>
+          <%= link_to "New Idea", new_idea_path, class: "nav-item nav-link" %>
        
             <% if user_signed_in? %>
             <%= link_to current_user.name, edit_user_path(current_user), class: "nav-item nav-link" %>

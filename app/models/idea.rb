@@ -8,7 +8,7 @@ has_many :likers, through: :likes, source: :user
 
 
 validates :title, presence: true, uniqueness: true
-validates :body, presence: true, length: { minimum: 50 }
+validates :body, presence: true
 
 scope(:recent, -> { order(created_at: :desc).limit(10) })
 

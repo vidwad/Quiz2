@@ -1,10 +1,10 @@
 
-<h1>All Ideas</h1><br>
-  <hr><br>
+
+ <br>
 
 <% @ideas.each do |idea| %>
   <div>
-    <h2><%= link_to idea.title, idea_path(idea) %></h2>
+    <h3><%= link_to idea.title, idea_path(idea) %></h3>
     <p><%= idea.body %></p>
      <p>By: <%= idea.user.name %></p>
 
